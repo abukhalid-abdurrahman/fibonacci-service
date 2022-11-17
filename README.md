@@ -3,6 +3,9 @@
 ## Service Design.
 ![Fibonacci-Service drawio](https://user-images.githubusercontent.com/62469844/202471760-a26e388e-edd7-4591-adc9-236c25a99f24.svg)
 
+The system designed shows how does Fibonacci Service should work. The first step is to receive a request from a client, and check if client wants to get data from cache. Otherwise service would start a new task with specified timeout. That async task would generate a result, and write it to temporary memory. After task execution or it timeout, service would save results into memory cache db, and make a response to client.
+
+But that task implementation is not enough, there a lot of different ways to done it. For example, we can generate a subsequence from sequence of Fibonacci numbers in separated background host/worker. And after it execution we can notify client using http request to a client callback, or use some of message brokers.
 
 ## Project Structure or Layers.
 
