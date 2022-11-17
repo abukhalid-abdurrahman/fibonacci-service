@@ -1,5 +1,9 @@
 # Fibonacci Service Documentation.
 
+## Service Design.
+![Fibonacci-Service drawio](https://user-images.githubusercontent.com/62469844/202471760-a26e388e-edd7-4591-adc9-236c25a99f24.svg)
+
+
 ## Project Structure or Layers.
 
 Fibonacci Service divided into layers to reduce dependence between them. Dividing into layers also helps to create an abstraction that makes each layer **reusable** and easy to **maintain** and **scale**.
