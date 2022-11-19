@@ -1,9 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace Repository.Abstraction.FibonacciSubsequence;
+﻿namespace Repository.Abstraction.FibonacciSubsequence;
 
 public interface IFibonacciSubsequenceRepository
 {
-    public Task<FibonacciSubsequence> GetFibonacciSubsequenceByIdAsync(string subsequenceId);
-    public Task<bool> InsertFibonacciSubsequenceAsync(string subsequenceId);
+    public Task<Entity.Model.FibonacciSubsequence?> GetFibonacciSubsequenceByIdAsync(string subsequenceKey, CancellationToken cancellationToken = default);
+    public Task<bool> InsertFibonacciSubsequenceAsync(Entity.Model.FibonacciSubsequence entity, CancellationToken cancellationToken = default);
 }

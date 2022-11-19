@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+﻿using Entity.DTO.FibonacciSubsequence;
 
 namespace UseCase.Abstraction.FibonacciSubsequence;
 
