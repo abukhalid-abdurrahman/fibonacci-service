@@ -1,3 +1,5 @@
+using CrossCuttingConcerns.Extension;
+
 namespace Entity.DTO;
 
 public sealed class Response<T>
