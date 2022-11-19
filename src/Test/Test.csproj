@@ -15,5 +15,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CrossCuttingConcerns\CrossCuttingConcerns.csproj" />
     <ProjectReference Include="..\Entity\Entity.csproj" />
+    <ProjectReference Include="..\UseCase.Implementation\UseCase.Implementation.csproj" />
   </ItemGroup>
 </Project>

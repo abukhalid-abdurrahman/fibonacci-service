@@ -6,7 +6,7 @@ public class FibonacciSubsequence
 {
     public int FirstIndex { get; set; }
     public int LastIndex { get; set; }
-    public int[] Subsequence { get; set; }
+    public long[] Subsequence { get; set; }
 
     private string _key = string.Empty;
 

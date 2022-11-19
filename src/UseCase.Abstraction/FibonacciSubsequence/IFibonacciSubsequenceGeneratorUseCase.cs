@@ -1,8 +1,9 @@
-﻿using Entity.DTO.FibonacciSubsequence;
+﻿using Entity.DTO;
+using Entity.DTO.FibonacciSubsequence;
 
 namespace UseCase.Abstraction.FibonacciSubsequence;
 
 public interface IFibonacciSubsequenceGeneratorUseCase
 {
-    public Task<FibonacciSubsequenceResponse> ExecuteAsync(FibonacciSubsequenceRequest request);
+    public Task<Response<FibonacciSubsequenceResponse>> ExecuteAsync(FibonacciSubsequenceRequest request, CancellationToken cancellationToken = default);
 }

@@ -8,11 +8,11 @@ public sealed class Response<T>
     public string? Message { get; set; }
     public T? Payload { get; set; }
 
-    public static Response<T> FailedResponse(ErrorCode code) =>
+    public static Response<T> FailedResponse(ErrorCode code, string message = null) =>
         new Response<T>() 
         {
             Code = code,
-            Message = code.GetDescription(),
+            Message = message ?? code.GetDescription(),
             Payload = default
         };
     
