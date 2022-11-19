@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj" />
+    <ProjectReference Include="..\UseCase.Abstraction\UseCase.Abstraction.csproj" />
+  </ItemGroup>
+
 </Project>
