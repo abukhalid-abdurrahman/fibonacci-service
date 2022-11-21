@@ -37,6 +37,8 @@ public sealed class FibonacciSubsequenceRepository : IFibonacciSubsequenceReposi
             var entity = JsonConvert
                 .DeserializeObject<Entity.Model.FibonacciSubsequence?>(entityContent);
 
+            _logger.LogInformation($"Record with id {subsequenceKey} was retrived from a storage.");
+
             return entity;
         }
         catch (System.Exception ex)

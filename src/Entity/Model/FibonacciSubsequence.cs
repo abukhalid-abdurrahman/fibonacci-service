@@ -1,4 +1,3 @@
-using System.Numerics;
 using CrossCuttingConcerns.Util;
 
 namespace Entity.Model;

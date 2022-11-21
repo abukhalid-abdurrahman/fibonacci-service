@@ -1,5 +1,4 @@
-﻿using Entity.Model;
-using System.Numerics;
+﻿using System.Numerics;
 using Entity.DTO;
 using Entity.DTO.FibonacciSubsequence;
 using Microsoft.Extensions.Logging;
@@ -24,11 +23,16 @@ public sealed class FibonacciSubsequenceGeneratorInteractor : IFibonacciSubseque
     {
         try
         {
+            var responseMessage = string.Empty;
             var subsequenceList = new List<BigInteger>();
 
             var generatorTask = new Task(() => {
                 BigInteger fibonacciNumberA = 0;
                 BigInteger fibonacciNumberB = 1;
+        
+                subsequenceList.Add(fibonacciNumberA);
+                subsequenceList.Add(fibonacciNumberB);
+
                 for(int i = 2; i < request.LastIndex + 1; i++)
                 {
                     var fibonacciNumber = fibonacciNumberA + fibonacciNumberB;
@@ -42,8 +46,12 @@ public sealed class FibonacciSubsequenceGeneratorInteractor : IFibonacciSubseque
             }, cancellationToken);
             generatorTask.Start();
 
-            await generatorTask.WaitAsync(TimeSpan.FromSeconds(request.TimeoutInSeconds), cancellationToken);
+            _logger.LogInformation($"Async task for generation fibonacci-subsequence from {request.FirstIndex} to {request.LastIndex} started.");
 
+            var isGenerationCompleted = generatorTask.Wait(TimeSpan.FromMilliseconds(request.TimeoutInMilliseconds), cancellationToken);
+            if(!isGenerationCompleted) 
+                responseMessage = "Generation cancelled, because spicified timeout.";
+            
             var subsequenceArray = subsequenceList
                 .Select(bi => bi.ToString())
                 .ToArray();
@@ -54,13 +62,18 @@ public sealed class FibonacciSubsequenceGeneratorInteractor : IFibonacciSubseque
                 LastIndex = request.LastIndex,
                 Subsequence = subsequenceArray
             };
+
             var insertionResult = await _fibonacciSubsequenceRepository.InsertFibonacciSubsequenceAsync(fibonacciSubsequenceEntity);
+            if(!insertionResult)
+                return Response<FibonacciSubsequenceResponse>.FailedResponse(ErrorCode.InternalError, "Subsequence insertion failed.");
+
+            _logger.LogInformation($"Generation of fibonacci-subsequence from {request.FirstIndex} to {request.LastIndex} finished, inserted into storage, and ready to response.");
 
             return Response<FibonacciSubsequenceResponse>.SuccessResponse(ErrorCode.Approved, 
                 new FibonacciSubsequenceResponse 
                 {
                     Subsequence = subsequenceArray
-                });
+                }, responseMessage);
         }
         catch (System.Exception ex)
         {

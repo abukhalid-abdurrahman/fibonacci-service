@@ -16,11 +16,11 @@ public sealed class Response<T>
             Payload = default
         };
     
-    public static Response<T> SuccessResponse(ErrorCode code, T payload) =>
+    public static Response<T> SuccessResponse(ErrorCode code, T payload, string message = null) =>
         new Response<T>() 
         {
             Code = code,
-            Message = code.GetDescription(),
+            Message = message ?? code.GetDescription(),
             Payload = payload
         };
 }
