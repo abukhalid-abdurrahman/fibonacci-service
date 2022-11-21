@@ -9,6 +9,7 @@ using Entity.DTO.FibonacciSubsequence;
 using Entity.Validation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using FluentValidation.AspNetCore;
 
 namespace Presentation.IoC;
 
@@ -40,5 +41,7 @@ public static class ServiceRegistration
     public static void RegisterValidators(this WebApplicationBuilder builder)
     {
         builder.Services.AddScoped<IValidator<FibonacciSubsequenceRequest>, FibonacciSubsequenceRequestValidator>();
+        builder.Services.AddFluentValidationAutoValidation()
+            .AddFluentValidationClientsideAdapters();
     }
 }
