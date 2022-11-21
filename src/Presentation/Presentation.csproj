@@ -1,9 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="7.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entity\Entity.csproj" />
+    <ProjectReference Include="..\UseCase.Implementation\UseCase.Implementation.csproj" />
+    <ProjectReference Include="..\UseCase.Abstraction\UseCase.Abstraction.csproj" />
+    <ProjectReference Include="..\Repository.Abstraction\Repository.Abstraction.csproj" />
+    <ProjectReference Include="..\Repository.Implementation\Repository.Implementation.csproj" />
+  </ItemGroup>
 </Project>
