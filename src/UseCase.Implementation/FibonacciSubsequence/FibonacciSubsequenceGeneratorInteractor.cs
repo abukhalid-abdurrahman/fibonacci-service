@@ -1,4 +1,6 @@
-﻿using Entity.DTO;
+﻿using Entity.Model;
+using System.Numerics;
+using Entity.DTO;
 using Entity.DTO.FibonacciSubsequence;
 using Microsoft.Extensions.Logging;
 using Repository.Abstraction.FibonacciSubsequence;
@@ -22,11 +24,11 @@ public sealed class FibonacciSubsequenceGeneratorInteractor : IFibonacciSubseque
     {
         try
         {
-            var subsequenceList = new List<long>();
+            var subsequenceList = new List<BigInteger>();
 
             var generatorTask = new Task(() => {
-                var fibonacciNumberA = 0;
-                var fibonacciNumberB = 1;
+                BigInteger fibonacciNumberA = 0;
+                BigInteger fibonacciNumberB = 1;
                 for(int i = 2; i < request.LastIndex + 1; i++)
                 {
                     var fibonacciNumber = fibonacciNumberA + fibonacciNumberB;
@@ -37,15 +39,27 @@ public sealed class FibonacciSubsequenceGeneratorInteractor : IFibonacciSubseque
                     fibonacciNumberA = fibonacciNumberB;
                     fibonacciNumberB = fibonacciNumber;
                 }
-            });
+            }, cancellationToken);
             generatorTask.Start();
 
             await generatorTask.WaitAsync(TimeSpan.FromSeconds(request.TimeoutInSeconds), cancellationToken);
 
+            var subsequenceArray = subsequenceList
+                .Select(bi => bi.ToString())
+                .ToArray();
+
+            var fibonacciSubsequenceEntity = new Entity.Model.FibonacciSubsequence() 
+            {
+                FirstIndex = request.FirstIndex,
+                LastIndex = request.LastIndex,
+                Subsequence = subsequenceArray
+            };
+            var insertionResult = await _fibonacciSubsequenceRepository.InsertFibonacciSubsequenceAsync(fibonacciSubsequenceEntity);
+
             return Response<FibonacciSubsequenceResponse>.SuccessResponse(ErrorCode.Approved, 
                 new FibonacciSubsequenceResponse 
                 {
-                    Subsequence = subsequenceList.ToArray()
+                    Subsequence = subsequenceArray
                 });
         }
         catch (System.Exception ex)

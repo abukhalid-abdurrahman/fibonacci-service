@@ -1,6 +1,8 @@
+using System.Numerics;
+
 namespace Entity.DTO.FibonacciSubsequence;
 
 public sealed class FibonacciSubsequenceResponse
 {
-    public long[] Subsequence { get; set; }
+    public string[] Subsequence { get; set; }
 }

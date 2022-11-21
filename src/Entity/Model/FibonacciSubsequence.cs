@@ -1,3 +1,4 @@
+using System.Numerics;
 using CrossCuttingConcerns.Util;
 
 namespace Entity.Model;
@@ -6,7 +7,11 @@ public class FibonacciSubsequence
 {
     public int FirstIndex { get; set; }
     public int LastIndex { get; set; }
-    public long[] Subsequence { get; set; }
+
+    ///<summary>
+    /// Fibonacci numbers can be very huge, that's why it need to be stored as a string.
+    ///</summary>
+    public string[] Subsequence { get; set; }
 
     private string _key = string.Empty;
 
