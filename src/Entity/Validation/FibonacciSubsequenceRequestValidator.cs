@@ -8,8 +8,8 @@ public class FibonacciSubsequenceRequestValidator : AbstractValidator<FibonacciS
     public FibonacciSubsequenceRequestValidator()
     {
         RuleFor(request => request.FirstIndex)
-            .GreaterThan(0)
-            .WithMessage("FirstIndex field must be greater than 0.");
+            .GreaterThanOrEqualTo(0)
+            .WithMessage("FirstIndex field must equal or be greater than 0.");
         
         RuleFor(request => request.LastIndex)
             .GreaterThan(request => request.FirstIndex)

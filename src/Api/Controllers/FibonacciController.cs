@@ -17,7 +17,7 @@ public class FibonacciController : ControllerBase
         _fibonacciSubsequenceProviderUseCase = fibonacciSubsequenceProviderUseCase;
     }
 
-    [HttpGet("/Subsequence")]
+    [HttpGet("Subsequence")]
     public async Task<Response<FibonacciSubsequenceResponse>> GetFibonacciSubsequenceAsync(
         [FromQuery] FibonacciSubsequenceRequest request, CancellationToken cancellationToken)
     {

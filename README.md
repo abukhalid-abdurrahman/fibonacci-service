@@ -37,3 +37,8 @@ Application layer is a web api or a service that launchs on a web server with an
 
 ### Cross-Cutting-Concerns Layer.
 Cross-Cutting-Concerns layer stores logging tools, exceptions or something that we can use in all layers. Layer path: `/src/CrossCuttingConcerns`
+
+# Tests.
+
+## Test naming in Fibonacci-Service.
+The most popular template is `[Class Name]_[Method Name]_[Scenario Brief Description]_Scenario` For example we can got *Base64Util_Base64Encode_ShouldEncodeStringToBase64_Scenario*.

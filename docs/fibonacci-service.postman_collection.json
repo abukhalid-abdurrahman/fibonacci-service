@@ -2,9 +2,139 @@
 	"info": {
 		"_postman_id": "b0ac5124-a600-4290-8939-4320958fc914",
 		"name": "Fibonacci Service",
-		"description": "# Introduction\n\nWhat does your API do?\n\n# Overview\n\nThings that the developers should know about\n\n# Authentication\n\nWhat is the preferred way of using the API?\n\n# Error Codes\n\nClients always receives **200 HTTP Status**, that means service works good and can handle your requests. Another HTTP Status Codes means that service not available, for example _500_ - for unhandled exception, _502_ if service not working and etc.\n\nTo get more information about request state, client will receive a **Code** field in response. **Code** field can store next values:\n\n| **Code.** | **Message, description.** |\n| --- | --- |\n| 10 | Approved, means that request is successfully executed. |\n| 20 | Internal Error, means that something goes wrong while executing request. |\n| 21 | Bad Request, client miss something in request. |\n| 22 | Data not found. |\n\n# Rate limit\n\nIs there a limit to the number of requests a user can send?",
+		"description": "# Introduction\n\nService generates a subsequence from Fibonacci Numbers, by given First Index and Last Index.\n\n# Error Codes\n\nClients always receives **200 HTTP Status**, that means service works good and can handle your requests. Another HTTP Status Codes means that service not available, for example _500_ - for unhandled exception, _502_ if service not working and etc.\n\nTo get more information about request state, client will receive a **Code** field in response. **Code** field can store next values:\n\n| **Code.** | **Message, description.** |\n| --- | --- |\n| 10 | Approved, means that request is successfully executed. |\n| 20 | Internal Error, means that something goes wrong while executing request. |\n| 21 | Bad Request, client miss something in request. |\n| 22 | Data not found. |",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "11567659"
 	},
-	"item": []
+	"item": [
+		{
+			"name": "Fibonacci",
+			"item": [
+				{
+					"name": "Generate or Fetch Fibonacci Subsequence",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/Fibonacci/Subsequence?FirstIndex=0&LastIndex=21&TimeoutInMilliseconds=100&RetriveFromCache=false",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"Fibonacci",
+								"Subsequence"
+							],
+							"query": [
+								{
+									"key": "FirstIndex",
+									"value": "0"
+								},
+								{
+									"key": "LastIndex",
+									"value": "21"
+								},
+								{
+									"key": "TimeoutInMilliseconds",
+									"value": "100"
+								},
+								{
+									"key": "RetriveFromCache",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Generate or Fetch Fibonacci Subsequence Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/Fibonacci/Subsequence?FirstIndex=0&LastIndex=21&TimeoutInMilliseconds=100&RetriveFromCache=false",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"Fibonacci",
+										"Subsequence"
+									],
+									"query": [
+										{
+											"key": "FirstIndex",
+											"value": "0"
+										},
+										{
+											"key": "LastIndex",
+											"value": "21"
+										},
+										{
+											"key": "TimeoutInMilliseconds",
+											"value": "100"
+										},
+										{
+											"key": "RetriveFromCache",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Nov 2022 12:08:46 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": 20,\n    \"message\": \"Subsequence insertion failed.\",\n    \"payload\": null,\n    \"errorMessages\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8000",
+			"type": "string"
+		}
+	]
 }
