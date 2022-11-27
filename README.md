@@ -42,3 +42,12 @@ Cross-Cutting-Concerns layer stores logging tools, exceptions or something that 
 
 ## Test naming in Fibonacci-Service.
 The most popular template is `[Class Name]_[Method Name]_[Scenario Brief Description]_Scenario` For example we can got *Base64Util_Base64Encode_ShouldEncodeStringToBase64_Scenario*.
+
+## Tests in Fibonacci-Service.
+In current time not all units of service were test covered. There are tests for Base64Util class that helps to encode and decode string to/from base64, also tests for request validator and Fibonacci subsequence generator use case. Tests path: `/src/Test`.
+
+## Commands for running tests.
+To build and run tests input:
+
+`cd src/Test` - get in to test project directory.
+`dotnet test` - build and run tests.
