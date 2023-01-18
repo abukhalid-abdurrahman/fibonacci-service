@@ -28,11 +28,13 @@ public sealed class FibonacciSubsequenceGeneratorTest
     public async Task Generator_ExecuteAsync_ShouldGenerateSubsequenceSuccessfully_Scenario
         (int firstIndex, int lastIndex, int timeout)
     {
+        // Creating mock repository and set it behavior
         _repository
             .Setup(x => x.InsertFibonacciSubsequenceAsync(
                 It.IsAny<FibonacciSubsequence>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);
 
+        // Creating generator interactor
         var generatorUseCase = new FibonacciSubsequenceGeneratorInteractor(
             _repository.Object,
             _logger);
@@ -44,6 +46,8 @@ public sealed class FibonacciSubsequenceGeneratorTest
             },
             CancellationToken.None
         );
+
+        // Checking code
         Assert.AreEqual(generatorResponse.Code, ErrorCode.Approved);
     }
 }
